@@ -1,5 +1,7 @@
+"""Unittest Module for the State Class"""
+
 import unittest
-from models.state import State  # Adjust the import path as needed
+from models.state import State
 
 
 class TestState(unittest.TestCase):

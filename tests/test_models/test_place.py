@@ -1,3 +1,5 @@
+"""Unittest Module for the Place Class"""
+
 import unittest
 from models.place import Place
 
