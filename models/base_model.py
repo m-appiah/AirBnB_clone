@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+"""Base module that defines all attributes and methods"""
 
 import uuid
 from datetime import datetime
-import time
+from models import storage
 
 
 class BaseModel:
@@ -41,6 +42,8 @@ class BaseModel:
         """ Update the updated_at attribute with the current datetime. """
 
         self.updated_at = datetime.now()
+        storage.save()
+        storage.reload()
 
     def to_dict(self):
         """Return a dictionary representation of the instance.
