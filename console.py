@@ -12,6 +12,7 @@ import cmd
 import re
 from shlex import split
 
+
 def parse(arg):
     """
     Parses the input string to extract content within curly
@@ -36,7 +37,7 @@ def parse(arg):
     if curly_braces is None:
         # If there are also no square brackets
         if brackets is None:
-             # Assuming split is defined elsewhere
+            # Assuming split is defined elsewhere
             return [char.strip(",") for char in split(arg)]
         else:
             # If square brackets are found
@@ -93,7 +94,10 @@ class HBNBCommand(cmd.Cmd):
             passed_arg = [arg[:match.span()[0]], arg[match.span()[1]:]]
             match = re.search(r"\((.*?)\)", passed_arg[1])
             if match is not None:
-                command = [passed_arg[1][:match.span()[0]], match.group()[1:-1]]
+                command = [
+                        passed_arg[1][:match.span()[0]],
+                        match.group()[1:-1]
+                        ]
                 if command[0] in argdict.keys():
                     call = "{} {}".format(passed_arg[0], command[1])
                     return argdict[command[0]](call)
@@ -142,7 +146,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Display the string representation of a class instance of a given id.
+        Display the string representation of a class
+        instance of a given id.
 
         Args:
             arg (str): The input argument string.
@@ -175,7 +180,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(passed_arg) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(passed_arg[0], passed_arg[1]) not in objdict.keys():
+        elif "{}.{}".format(
+                passed_arg[0],
+                passed_arg[1]) not in objdict.keys():
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(passed_arg[0], passed_arg[1])]
@@ -194,7 +201,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             objl = []
             for obj in storage.all().values():
-                if len(passed_arg) > 0 and passed_arg[0] == obj.__class__.__name__:
+                if len(
+                        passed_arg
+                        ) > 0 and passed_arg[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(passed_arg) == 0:
                     objl.append(obj.__str__())
@@ -215,7 +224,8 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def do_update(self, arg):
-        """Update a class instance of a given id by adding or updating a given attribute key/value pair or dictionary.
+        """Update a class instance of a given id by adding or
+        updating a given attribute key/value pair or dictionary.
 
         Args:
             arg (str): The input argument string.
