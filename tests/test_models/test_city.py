@@ -1,5 +1,7 @@
+"""Unittest Module for the City Class"""
+
 import unittest
-from models.city import City  # Adjust the import path as needed
+from models.city import City
 
 
 class TestCity(unittest.TestCase):
