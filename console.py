@@ -7,7 +7,7 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
-from models import storage
+from models.engine.file_storage import FileStorage as storage
 import cmd
 import re
 from shlex import split
